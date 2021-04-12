@@ -10,6 +10,9 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <asp:HiddenField ID="CtlHidden" runat="server" />
+            <asp:Button ID="BtnOK" runat="server" Text="히든필드값 출력" OnClick="BtnOK_Click" /><br />
+
             <asp:HyperLink ID="LnkMicrosoft" runat="server" NavigateUrl="https://www.microsoft.com" Text="마이크로소프트" />
             <asp:Image ID="ImgChange" runat="server" ImageUrl="~/images/ASP-NET-Banners-01.png" />
             <asp:Button ID="BtnChange" runat="server" OnClick="BtnChange_Click" Text="이미지 변경"/><br />

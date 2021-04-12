@@ -15,11 +15,21 @@ namespace FirstWebApp
             LsbHobby.Items.Add("배구");
 
             CboPhoneNum.Items.Add("010-6683-7732");
+
+            if(!Page.IsPostBack)
+            {
+                CtlHidden.Value = DateTime.Now.ToShortTimeString();
+            }
         }
 
         protected void BtnChange_Click(object sender, EventArgs e)
         {
             ImgChange.ImageUrl = "~/images/ASP-NET-Banners-02.png";
+        }
+
+        protected void BtnOK_Click(object sender, EventArgs e)
+        {
+            Response.Write(CtlHidden.Value);
         }
     }
 }
