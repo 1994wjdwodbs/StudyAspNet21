@@ -69,11 +69,14 @@
   <ItemGroup>
     <Content Include="Content\main.css" />
     <Content Include="FrmAppSession.aspx" />
+    <Content Include="FrmButton.aspx" />
+    <Content Include="FrmControls.aspx" />
     <Content Include="FrmPageLoad.aspx" />
     <Content Include="FrmRequest.aspx" />
     <Content Include="FrmResponseBuffer.aspx" />
     <Content Include="FrmResponseWrite.aspx" />
     <Content Include="FrmServer.aspx" />
+    <Content Include="FrmStandardControl.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Index.aspx" />
     <Content Include="Web.config" />
@@ -85,6 +88,20 @@
     </Compile>
     <Compile Include="FrmAppSession.aspx.designer.cs">
       <DependentUpon>FrmAppSession.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FrmButton.aspx.cs">
+      <DependentUpon>FrmButton.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FrmButton.aspx.designer.cs">
+      <DependentUpon>FrmButton.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FrmControls.aspx.cs">
+      <DependentUpon>FrmControls.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FrmControls.aspx.designer.cs">
+      <DependentUpon>FrmControls.aspx</DependentUpon>
     </Compile>
     <Compile Include="FrmPageLoad.aspx.cs">
       <DependentUpon>FrmPageLoad.aspx</DependentUpon>
@@ -121,6 +138,13 @@
     <Compile Include="FrmServer.aspx.designer.cs">
       <DependentUpon>FrmServer.aspx</DependentUpon>
     </Compile>
+    <Compile Include="FrmStandardControl.aspx.cs">
+      <DependentUpon>FrmStandardControl.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FrmStandardControl.aspx.designer.cs">
+      <DependentUpon>FrmStandardControl.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -145,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="images\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
