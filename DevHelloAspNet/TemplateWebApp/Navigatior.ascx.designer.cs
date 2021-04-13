@@ -7,9 +7,11 @@
 // </자동 생성됨>
 //------------------------------------------------------------------------------
 
-namespace TemplateWebApp {
-    
-    
-    public partial class Navigatior {
+namespace TemplateWebApp
+{
+
+
+    public partial class Navigatior
+    {
     }
 }
