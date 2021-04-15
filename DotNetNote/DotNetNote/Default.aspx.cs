@@ -14,6 +14,7 @@ namespace DotNetNote
         {
             // TEST
             // Response.Write(StringLibrary.CutString("안녕하세요. 부경대학교입니다.", 10));
+            BoardLibrary.LOGGER.Info("DotNet Note 게시판 시작!");
         }
     }
 }
