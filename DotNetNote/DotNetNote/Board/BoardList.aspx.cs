@@ -14,6 +14,8 @@ namespace DotNetNote.Board
 
         // 검색/보통 모드 : true/false
         public bool SearchMode { get; set; } = false;
+        public string SearchField { get; set; }
+        public string SearchQuery { get; set; }
 
         public int RecordCount = 0; // 총 레코드 수
         public int PageIndex = 0; // 페이징 할 때 필요한 값, 현재 보여줄 페이지 번호
@@ -26,11 +28,24 @@ namespace DotNetNote.Board
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            // 검색 모드 결정
+            SearchMode = (!string.IsNullOrEmpty(Request["SearchField"]) && !string.IsNullOrEmpty(Request["SearchQuery"]));
+            
+            if (SearchMode)
+            {
+                SearchField = Request["SearchField"];
+                SearchQuery = Request["SearchQuery"];
+            }
+
             if (!SearchMode)
             { // 보통 모드 (모든 레코드 수 출력)
                 RecordCount = _repo.GetCountAll();
             }
-            
+            else
+            {
+                RecordCount = _repo.GetCountBySearch(SearchField, SearchQuery);
+            }
+
             if (Request["Page"] != null)
             {
                 PageIndex = Convert.ToInt32(Request["page"]) - 1;
@@ -57,6 +72,10 @@ namespace DotNetNote.Board
             if (!SearchMode)
             { // 보통 모드 출력
                 GrvNotes.DataSource = _repo.GetAll(PageIndex);
+            }
+            else
+            { // 검색 결과 리스트
+                GrvNotes.DataSource = _repo.GetSeachAll(PageIndex, SearchField, SearchQuery);
             }
 
             GrvNotes.DataBind(); // 데이터 바인딩

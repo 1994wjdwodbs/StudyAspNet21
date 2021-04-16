@@ -15,8 +15,8 @@ namespace DotNetNote.Board
         protected void Page_Load(object sender, EventArgs e)
         {
             lnkDelete.NavigateUrl = $"BoardDelete.aspx?Id={Request["Id"]}";
-            lnkModify.NavigateUrl = $"BoardModify.aspx?Id={Request["Id"]}";
-            lnkReply.NavigateUrl = $"BoardReply.aspx?Id={Request["Id"]}";
+            lnkModify.NavigateUrl = $"BoardWrite.aspx?Id={Request["Id"]}&Mode=Edit"; // BoardWrite 재활용
+            lnkReply.NavigateUrl = $"BoardWrite.aspx?Id={Request["Id"]}&Mode=Reply"; // BoardWrite 재활용
 
             _Id = Request["Id"];
             if (_Id == null)
@@ -57,6 +57,10 @@ namespace DotNetNote.Board
             lblPostDate.Text = note.PostDate.ToString();
             lblPostIP.Text = note.PostIp;
 
+            if (note.FileName.Length > 1)
+                lblFile.Text = $"{note.FileName} / 다운로드 {note.DownCount}";
+            else
+                lblFile.Text = "None";
         }
     }
 }
