@@ -1,0 +1,89 @@
+﻿@*
+    컨트롤러로부터 특정 모델 클래스 형식으로 전달된 단일 또는 컬렉션 형태의 데이터를 받는 뷰 페이지를 강력한 형식의 뷰라고 한다. 
+    @model 키워드로 모델 클래스 형식을 지정하면 뷰 페이지에서 For 접미사로 끝나는 헬퍼 메서드의 코드를 작성할 때 Visual Studio 인텔리센스의 도움을 받을 수 있다.
+*@
+
+@model MyPortpolio.Models.Account
+
+@{
+    ViewData["Title"] = "Login";
+    // 요청한 곳에 따라서 레이아웃 바꿔넣기
+    @*
+        if (ViewData["Reffer"].ToString().Contains("Login"))
+        {
+        }
+        else
+        {
+            if (ViewData["Reffer"].ToString().Contains("Index"))
+            {
+                Layout = "~/Views/Shared/_LandingLayout.cshtml";
+            }
+            else if (ViewData["Reffer"].ToString().Contains("Profile"))
+            {
+                Layout = "~/Views/Shared/_ProfileLayout.cshtml";
+            }
+            else
+            {
+                Layout = "~/Views/Shared/_LoginLayout.cshtml";
+            }*@
+    // 어느 자식 홈페이지건 상관없이 로그인 박스(메트로 스타일 팝업)가 뜨는 기능 구현
+    /*
+    ASP.NET MVC 팝업 윈도우
+    https://demos.devexpress.com/MVCxDockAndPopupsDemos/PopupControl/Templates
+    */
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<div class="col-lg-4 col-md-6 ml-auto mr-auto">
+    <div class="card card-login">
+        <form class="form" asp-action="Login">
+            <div class="card-header card-header-primary text-center">
+                <h4 class="card-title">Login</h4>
+                <div class="social-line">
+                    @*<a href="#pablo" class="btn btn-just-icon btn-link">
+                            <i class="fa fa-facebook-square"></i>
+                        </a>
+                        <a href="#pablo" class="btn btn-just-icon btn-link">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a href="#pablo" class="btn btn-just-icon btn-link">
+                            <i class="fa fa-google-plus"></i>*@
+                    </a>
+                </div>
+            </div>
+            <p class="description text-center">&nbsp;</p>
+            <div class="card-body">
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="material-icons">mail</i>
+                        </span>
+                    </div>
+                    <input type="email" class="form-control" placeholder="Email..." asp-for="Email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="material-icons">lock_outline</i>
+                        </span>
+                    </div>
+                    <input type="password" class="form-control" placeholder="Password..." asp-for="Password">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="row text-center">
+                    <div class="col">
+                        @if (this.ViewBag.Message != null)
+                        {
+                            <span>@ViewBag.Message</span>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="footer text-center">
+                <button type="submit" class="btn btn-dark">로그인</button>
+            </div>
+        </form>
+    </div>
+</div>

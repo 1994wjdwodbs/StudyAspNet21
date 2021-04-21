@@ -27,6 +27,16 @@ namespace MyPortpolio
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // ASP.NET CORE에서 Session을 사용하려면
+            // : AddDistributeMemoryCache, AddSession 서비스 추가!
+            services.AddDistributedMemoryCache();
+            services.AddSession(opt =>
+            {
+                opt.IdleTimeout = TimeSpan.FromMinutes(10); // 10분마다 타임아웃
+                opt.Cookie.HttpOnly = true;
+                opt.Cookie.IsEssential = true;
+            });
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -58,6 +68,9 @@ namespace MyPortpolio
 
             app.UseAuthentication();
             app.UseAuthorization();
+            
+            // 세션 사용
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
