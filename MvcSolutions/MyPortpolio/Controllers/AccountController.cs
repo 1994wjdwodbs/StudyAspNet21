@@ -43,11 +43,11 @@ namespace MyPortpolio.Controllers
                 { // 로그인 성공
                     HttpContext.Session.SetString("UserEmail", result.Email);
                     return RedirectToAction("Index", "Home");
-;                }
+                }
 
             }
 
-            return null;
+            return View("Login");
         }
 
         private Account CheckAccount(string email, string password)

@@ -5,39 +5,42 @@
     Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 
-<h1>Edit</h1>
-
-<h4>Board</h4>
+<script src="~/plugin/ckeditor_4.16.0_full/ckeditor/ckeditor.js"></script>
 
 <div class="col-lg col-md ml-auto mr-auto">
     <div class="card card-login">
-        <div class="section section-contacts">
+        <div class="section section-contacts" style="padding : 40px 0;">
             <div class="row">
                 <div class="col-md-11 ml-auto mr-auto">
-                    <h3 class="text-center title" style="color: #574646;">Board&nbsp;&#128203;</h3>
+                    <h3 class="text-center" style="color : #574646; font-weight : bold; margin-top : 0px;">Board&nbsp;&#128203;</h3>
 
                     <form asp-action="Edit">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <input type="hidden" asp-for="Id" />
                         <div class="form-group">
-                            <label asp-for="Subject" class="control-label"></label>
+                            <label asp-for="Subject" class="control-label">제목</label>
                             <input asp-for="Subject" class="form-control" />
                             <span asp-validation-for="Subject" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="Writer" class="control-label"></label>
+                            <label asp-for="Writer" class="control-label">작성자</label>
                             <input asp-for="Writer" class="form-control" />
                             <span asp-validation-for="Writer" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="Contents" class="control-label"></label>
-                            <textarea asp-for="Contents" class="form-control" rows="10"></textarea>
+                            <label asp-for="Contents" class="control-label">내용</label>
+                            <textarea asp-for="Contents" id="EditorContents" class="form-control" rows="10"></textarea>
+                            <script>CKEDITOR.replace("EditorContents");</script>
                         </div>
                         <div class="form-group">
-                            <label asp-for="RegDate" class="control-label"></label>
+                            <label asp-for="RegDate" class="control-label">작성일</label>
                             <input asp-for="RegDate" class="form-control" readonly />
                             <span asp-validation-for="RegDate" class="text-danger"></span>
                         </div>
+                        <!-- ReadCount 초기화 방지를 위해 Models.Board에서 읽어온 값들을 모두 클라이언트에 담아둔다. (hidden) -->
+                        <!-- 그런데 이미 DB 입력을 위해 클라이언트 정보들을 사용한다는 것 자체가 넌센스이다. (변조 가능) -->
+                        <!-- 따라서 필요 내용만 클라이언트에 저장해놓고 나머지는 DB에서 가져온다.(세션, 쿠키) -->
+                        <input asp-for="ReadCount" type="hidden" />
                         <div class="form-group">
                             <input type="submit" value="Save" class="btn btn-primary" />&nbsp;
                             <a asp-action="Index" class="btn btn-secondary">Back to List</a>
